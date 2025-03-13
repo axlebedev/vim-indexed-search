@@ -152,17 +152,17 @@ function! s:index_message(index, total, is_on_match, out_of_time, first_match_ln
         let hl = 'Error'
         let msg = 'No matches'
 
-    elseif !a:is_on_match && a:index == 0
-        let hl = 'WarningMsg'
-        let msg = 'Before first match, of '. shortmatch
-        if a:total == 1 | let msg = 'Before single match' | endif
-    elseif !a:is_on_match && a:index == a:total
-        let hl = 'WarningMsg'
-        let msg = 'After last match of '. shortmatch
-        if a:total == 1 | let msg = 'After single match' | endif
-    elseif !a:is_on_match
-        " hl remains default
-        let msg = 'Between matches '. a:index .'-'. (a:index+1) .' of '. matches . line_info
+    " elseif !a:is_on_match && a:index == 0
+    "     let hl = 'WarningMsg'
+    "     let msg = 'Before first match, of '. shortmatch
+    "     if a:total == 1 | let msg = 'Before single match' | endif
+    " elseif !a:is_on_match && a:index == a:total
+    "     let hl = 'WarningMsg'
+    "     let msg = 'After last match of '. shortmatch
+    "     if a:total == 1 | let msg = 'After single match' | endif
+    " elseif !a:is_on_match
+    "     " hl remains default
+    "     let msg = 'Between matches '. a:index .'-'. (a:index+1) .' of '. matches . line_info
 
     elseif !g:indexed_search_numbered_only && a:index == 1 && a:total == 1
         let hl = 'Search'

@@ -178,10 +178,13 @@ function! s:index_message(index, total, is_on_match, out_of_time, first_match_ln
         let msg = (g:indexed_search_shortmess ? '' : 'Match '). a:index .' of '. matches . line_info
     endif
 
-    return [hl, msg.'  /'.@/.'/']
+    if (g:show_search_term)
+        return [hl, msg.'  /'.@/.'/']
+    endif
+    return [hl, msg]
 endfunction
 
-
+let s:popupId = 0
 function! indexed_search#show_index(force)
     if @/ == '' || (!a:force && line('$') >= g:indexed_search_max_lines)
         return
@@ -189,5 +192,6 @@ function! indexed_search#show_index(force)
 
     let results = s:search(a:force)
     let [hl, msg] = call('s:index_message', results)
-    call s:echohl(g:indexed_search_colors ? hl : 'None', msg)
+    call popup_clear(s:popupId)
+    let s:popupId = popup_atcursor(msg, { 'pos': 'topleft', 'time': 3000, 'padding': [0, 1, 0, 1] })
 endfunction

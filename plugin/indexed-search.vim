@@ -38,6 +38,11 @@ let g:loaded_indexed_search = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
+" Show search term
+if !exists('g:show_search_term')
+    " Max filesize (in lines) up to where the plugin works
+    let g:show_search_term = 1
+endif
 
 " Performance tuning limits
 if !exists('g:indexed_search_max_lines')

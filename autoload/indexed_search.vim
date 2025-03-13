@@ -178,7 +178,7 @@ function! s:index_message(index, total, is_on_match, out_of_time, first_match_ln
         let msg = (g:indexed_search_shortmess ? '' : 'Match '). a:index .' of '. matches . line_info
     endif
 
-    if (g:show_search_term)
+    if (g:indexed_search_show_term)
         return [hl, msg.'  /'.@/.'/']
     endif
     return [hl, msg]

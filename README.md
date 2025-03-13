@@ -1,3 +1,7 @@
+### In this fork
+ 1. Add option 'g:indexed_search_show_term' 
+ 2. Show index at popup, not at command line
+
 # IndexedSearch.vim
 
 Requires vim7.4

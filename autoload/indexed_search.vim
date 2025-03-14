@@ -193,5 +193,7 @@ function! indexed_search#show_index(force)
     let results = s:search(a:force)
     let [hl, msg] = call('s:index_message', results)
     call popup_clear(s:popupId)
-    let s:popupId = popup_atcursor(msg, { 'pos': 'topleft', 'time': 1000, 'padding': [0, 1, 0, 1], 'moved': 'any', 'highlight': 'MatchParen' })
+
+    let s:highlightName = hlexists('IndexedSearchPopup') ? 'IndexedSearchPopup' : 'Search'
+    let s:popupId = popup_atcursor(msg, { 'pos': 'topleft', 'time': 1000, 'padding': [0, 1, 0, 1], 'moved': 'any', 'highlight': s:highlightName })
 endfunction

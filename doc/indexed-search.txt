@@ -103,6 +103,12 @@ g:indexed_search_show_term
                 If 0, show only "N of M"
                 Default: 1
 
+                                                *IndexedSearchPopup*
+IndexedSearchPopup
+                Highlight name for popup
+                Default: 'Search'
+
+
 
 =============================================================================
 MAPPINGS                                        *indexed-search-mappings*

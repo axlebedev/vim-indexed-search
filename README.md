@@ -1,6 +1,7 @@
 ### In this fork
  1. Add option 'g:indexed_search_show_term' 
  2. Show index at popup, not at command line
+ 3. Highlight group for popup: `IndexedSearchPopup`
 
 # IndexedSearch.vim
 

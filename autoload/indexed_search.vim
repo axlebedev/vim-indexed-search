@@ -185,6 +185,10 @@ function! s:index_message(index, total, is_on_match, out_of_time, first_match_ln
 endfunction
 
 let s:popupId = 0
+let s:lastMsg = ''
+function! ClearLastMsg(timerId)
+    let s:lastMsg = ''
+endfunction
 function! indexed_search#show_index(force)
     if @/ == '' || (!a:force && line('$') >= g:indexed_search_max_lines)
         return
@@ -192,8 +196,12 @@ function! indexed_search#show_index(force)
 
     let results = s:search(a:force)
     let [hl, msg] = call('s:index_message', results)
-    call popup_clear(s:popupId)
 
-    let s:highlightName = hlexists('IndexedSearchPopup') ? 'IndexedSearchPopup' : 'Search'
-    let s:popupId = popup_atcursor(msg, { 'pos': 'topleft', 'time': 1000, 'padding': [0, 1, 0, 1], 'moved': 'any', 'highlight': s:highlightName })
+    if (s:lastMsg != msg)
+        let s:lastMsg = msg
+        call popup_clear(s:popupId)
+        let s:highlightName = hlexists('IndexedSearchPopup') ? 'IndexedSearchPopup' : 'Search'
+        let s:popupId = popup_atcursor(msg, { 'pos': 'topleft', 'time': 1000, 'padding': [0, 1, 0, 1], 'moved': 'word', 'highlight': s:highlightName })
+        call timer_start(1000, 'ClearLastMsg')
+    endif
 endfunction
